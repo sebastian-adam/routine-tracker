@@ -7,7 +7,7 @@ const router = express.Router();
 /* GET user profile. */
 router.get('/', ensureLoggedIn, function(req, res, next) {
 
-  user = req.user
+  var user = req.user
 
   path = 'supply';
 

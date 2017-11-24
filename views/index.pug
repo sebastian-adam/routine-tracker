@@ -1,25 +1,67 @@
 extends layout
 
 block content
-  .info-wrapper
-    .info
-      span This sample reporting application is powered by 
-      a(href="https://reflect.io/")
-        strong Reflect 
-      span and 
-      a(href="https://auth0.com/")
-        strong Auth0
-      span . If you enjoy this demo, fork it on 
-      a(href="https://github.com/reflect/examples-logistics-app/tree/master") GitHub 
-      span for your own use.
-      br
-      br
-      .credentials
-        span Use these credentials to 
-        a(href="/login") log in 
-        span as a sample user:
-        p Email: 
-          strong reflect.user@gmail.com
-        p Password: 
-          strong password
-  img.spline.hidden-mobile(src="img/spline.png")
+	.leftnav
+		.leftnav-header
+			img.logo(src="./img/workbench-logo.png", alt="Logo")
+			div
+				small Meet your best self.
+		.menu
+			button.btn.sleep-btn.leftnav-btn.active(name="sleep", type="button") Sleep
+			button.btn.social-btn.leftnav-btn(name="social", type="button") Social
+			button.btn.work-btn.leftnav-btn(name="work", type="button") Work
+	.main-content
+		.topnav
+			.overview-nav.hidden
+				label(for="content_group") Welcome back, User.
+			.inventory-nav
+				label.primary(for="content_group") Filter
+				.btn-group(data-toggle="buttons")
+					label.btn
+						input(type="radio", name="options")
+						| 1 Day
+					label.btn.active
+						input(type="radio", name="options")
+						| 7 Days
+					label.btn
+						input(type="radio", name="options")
+						| 30 Days
+				//- button.btn.topnav-btn.all-options.active(value="", type="button", name="button") Past Week
+			img(src="./img/User.png", alt="User avatar")
+		#reflect-view.report.column
+		.rightnav.column
+			.form-wrapper
+				form(method='POST' action='/register')
+					h3 My Benchmarks
+					button.btn.submit-btn(type='submit') Update
+					.form-group.sleep-group
+						h4 Sleep
+						span#sleep-goal-value-label(for='sleep-goal') I want to sleep #{''}
+							span#sleep-goal-value.goal-value
+						span.goal-value #{''} hours
+						span #{''} each night.
+						.slider-wrapper
+							input#sleep-goal-slider.slider(name="sleep-goal")
+						.btn-group(data-toggle="buttons")
+							label.btn
+								input(type="radio", name="options")
+								| At least
+							label.btn.active
+								input(type="radio", name="options")
+								| At most
+					.form-group.social-group
+						h4 Social
+						span#social-goal-value-label(for='social-goal') I want to reach out to #{''}
+							span#social-goal-value.goal-value
+						span.goal-value #{''} friends
+						span #{''} each week.
+						.slider-wrapper
+							input#social-goal-slider.slider(name="social-goal")
+					.form-group.work-group
+						h4 Work
+						span#work-goal-value-label(for='work-goal') I want to be on task #{''}
+							span#work-goal-value.goal-value
+						span.goal-value % of the time
+						span .
+						.slider-wrapper
+							input#work-goal-slider.slider(name="work-goal")
